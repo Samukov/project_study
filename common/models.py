@@ -82,4 +82,3 @@ class FooterSettings(models.Model):
         verbose_name_plural = _("Footer Settings")
     def __str__(self):
         return f"Id: {self.id}|Address: {self.address}|Phone Number: {self.phone_number}|Email: {self.email}|Location: {self.location}"
-
