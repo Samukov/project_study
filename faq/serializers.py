@@ -1,24 +1,17 @@
 from rest_framework import serializers
-from .models import FAQQuestionCategory, FAQQuestion, FAQAnswer
+
+from faq.models import *
 
 
-class FAQAnswerSerializer(serializers.ModelSerializer):
+class FAQCategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = FAQAnswer
-        fields = ('answer',)
+        model = FAQCategory
+        fields = '__all__'
+        read_only_fields = [fields]
 
 
-class FAQQuestionSerializer(serializers.ModelSerializer):
-    answer = FAQAnswerSerializer()
-
+class FAQSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FAQQuestion
-        fields = ('question', 'answer')
-
-
-class FAQQuestionCategorySerializer(serializers.ModelSerializer):
-    questions = FAQQuestionSerializer(many=True)
-
-    class Meta:
-        model = FAQQuestionCategory
-        fields = ('title', 'questions')
+        model = FAQ
+        fields = '__all__'
+        read_only_fields = [fields]
