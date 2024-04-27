@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class FAQQuestionCategory(models.Model):
+class FAQCategory(models.Model):
     title = models.CharField(_('title'),
                              max_length=120)
 
@@ -14,9 +14,10 @@ class FAQQuestionCategory(models.Model):
         return self.title
 
 
-class FAQQuestion(models.Model):
+class FAQ(models.Model):
     question = models.TextField(_('Question'))
-    category = models.ForeignKey(to=FAQQuestionCategory,
+    answer = models.TextField(_('Answer'))
+    category = models.ForeignKey(to=FAQCategory,
                                  on_delete=models.CASCADE,
                                  verbose_name=_('Category'),
                                  related_name='questions')
@@ -26,19 +27,4 @@ class FAQQuestion(models.Model):
         verbose_name_plural = _('FAQ Questions')
 
     def __str__(self):
-        return f"Question: {self.question}| Category:{self.category.title}"
-
-
-class FAQAnswer(models.Model):
-    answer = models.TextField(_('Answer'))
-    question = models.OneToOneField(to=FAQQuestion,
-                                    on_delete=models.CASCADE,
-                                    verbose_name=_('Question'),
-                                    related_name='answer')
-
-    class Meta:
-        verbose_name = _('FAQ Answer')
-        verbose_name_plural = _('FAQ Answers')
-
-    def __str__(self):
-        return self.answer
+        return self.question

@@ -1,15 +1,26 @@
 from dotenv import dotenv_values
 from pathlib import Path
-from config.jaazmin_settings import JAZZMIN_SETTINGS
+# from config.jazzmin_settings import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 
 config = dotenv_values(".env")
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config['SECRET_KEY']
+
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config['DEBUG']
+
 ALLOWED_HOSTS = ['*']
 
+# Application definition
 GLOBAL_APPS = [
+    # Standard apps
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -23,15 +34,18 @@ LOCAL_APPS = [
     'common',
     'faq',
     'multimedia',
-    'main_platform'
+    'course',
+    'user',
+    'tests',
+    'certificate',
 ]
 
-THIRD_APPS = [
+THIRD_PART = [
     'rest_framework',
+    'ckeditor'
 ]
 
-
-INSTALLED_APPS = GLOBAL_APPS + LOCAL_APPS +THIRD_APPS
+INSTALLED_APPS = GLOBAL_APPS + LOCAL_APPS + THIRD_PART
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,9 +77,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
@@ -77,7 +91,6 @@ DATABASES = {
         'PORT': config['DB_PORT']
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -97,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -107,26 +119,27 @@ TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
-USE_TZ = False
-
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR/ 'static'
-
-STATICFILES_DIRS = [BASE_DIR / 'staticfiles',]
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [BASE_DIR / 'staticfiles', ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#
+# JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
+# #
+# #
+# JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
 
-JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+

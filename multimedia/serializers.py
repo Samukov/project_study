@@ -11,4 +11,3 @@ class MultimediaGalleryFileSerializer(serializers.ModelSerializer):
         model = MultimediaGalleryFile
         fields = ('id', 'file',)
         read_only_fields = [fields]
-
