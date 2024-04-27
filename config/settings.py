@@ -1,6 +1,6 @@
 from dotenv import dotenv_values
 from pathlib import Path
-# from config.jazzmin_settings import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
+from config.jazzmin_settings import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 
 config = dotenv_values(".env")
 
@@ -135,11 +135,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-#
-# JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
-# #
-# #
-# JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
+
+JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
+
+
+JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
