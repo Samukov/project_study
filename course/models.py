@@ -21,11 +21,6 @@ class Course(models.Model):
     card_desc = RichTextField(_('card description'))
     course_director = models.CharField(_('course director'),
                                        max_length=120)
-    # TODO
-    # author = models.ForeignKey(to=User,
-    #                            on_delete=models.CASCADE,
-    #                            verbose_name=_('Author'),
-    #                            related_name='courses')
     level = models.CharField(_('level'),
                              max_length=120,
                              choices=LevelChoices.choices)
