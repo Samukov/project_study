@@ -13,10 +13,13 @@ class FAQCategory(models.Model):
     def __str__(self):
         return self.title
 
-
 class FAQ(models.Model):
-    question = models.TextField(_('Question'))
-    answer = models.TextField(_('Answer'))
+    question = models.CharField(_('Question_uz'))
+    answer = models.TextField(_('Answer_uz'))
+    question_2 = models.CharField(_('Question_ru'))
+    answer_2 = models.TextField(_('Answer_ru'))
+    question_3 = models.CharField(_('Question_en'))
+    answer_3 = models.TextField(_('Answer_en'))
     category = models.ForeignKey(to=FAQCategory,
                                  on_delete=models.CASCADE,
                                  verbose_name=_('Category'),
@@ -28,3 +31,5 @@ class FAQ(models.Model):
 
     def __str__(self):
         return self.question
+
+

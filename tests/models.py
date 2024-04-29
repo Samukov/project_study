@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 from ckeditor.fields import RichTextField
 from course.models import Course
 
-
 class FinalTest(models.Model):
     course = models.OneToOneField(to=Course,
                                   on_delete=models.CASCADE,
@@ -21,7 +20,6 @@ class FinalTest(models.Model):
     def __str__(self):
         return f"Course: {self.course.title}| Final Exam: {self.title}"
 
-
 class TestQuestion(models.Model):
     question = RichTextField(_("Question"))
     final_test = models.ForeignKey(to=FinalTest,
@@ -29,14 +27,12 @@ class TestQuestion(models.Model):
                                    verbose_name=_("Final Test"),
                                    related_name='test_questions')
     order = models.IntegerField(_("Order"))
-
     class Meta:
         verbose_name = _("Test")
         verbose_name_plural = _("Tests")
 
     def __str__(self):
         return f"Course: {self.final_test.course.title}| Order: {self.order}| Question: {self.question}"
-
 
 class TestVariant(models.Model):
     answer = models.CharField(_('answer'),

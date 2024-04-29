@@ -5,7 +5,6 @@ from django.utils.translation import gettext_lazy as _
 from common.models import Media
 from django.contrib.auth.models import User
 
-
 class Course(models.Model):
     class LevelChoices(models.TextChoices):
         BEGINNER = 'beginner', _('Beginner')
@@ -39,7 +38,6 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
-
 class Module(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE,
                                verbose_name=_("Course"),
@@ -58,7 +56,6 @@ class Module(models.Model):
     def __str__(self):
         return f"Course:{self.course.title}| Module:{self.title}"
 
-
 class Lesson(models.Model):
     title = models.CharField(_('title'),
                              max_length=120)
@@ -76,7 +73,6 @@ class Lesson(models.Model):
     def __str__(self):
         return f"Course: {self.module.course.title}| Module:{self.module.title}| Lesson:{self.title}"
 
-
 class LessonMaterial(models.Model):
     class MaterialType(models.TextChoices):
         VIDEO = 'video', _('Video')
@@ -91,7 +87,6 @@ class LessonMaterial(models.Model):
     file = models.ForeignKey(Media,
                              on_delete=models.CASCADE,
                              verbose_name=_("File"))
-
     class Meta:
         verbose_name = _('Lesson Material')
         verbose_name_plural = _('Lesson Materials')
