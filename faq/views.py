@@ -9,6 +9,7 @@ class FAQCategoryAPIView(ListAPIView):
     serializer_class = FAQCategorySerializer
 
 
+
 class FAQListByCategory(RetrieveAPIView):
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer

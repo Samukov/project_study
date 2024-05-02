@@ -56,6 +56,9 @@ class Module(models.Model):
     def __str__(self):
         return f"Course:{self.course.title}| Module:{self.title}"
 
+
+
+
 class Lesson(models.Model):
     title = models.CharField(_('title'),
                              max_length=120)

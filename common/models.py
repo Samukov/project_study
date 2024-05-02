@@ -45,7 +45,6 @@ class Media(models.Model):
                                                      'mkv', 'flv', 'webm', 'avchd']:
                 raise ValidationError(_("Invalid Video File"))
 
-
 class CommonSettings(models.Model):
     instagram = models.URLField(_("instagram"))
     facebook = models.URLField(_("facebook"))
@@ -96,3 +95,5 @@ class FooterSettings(models.Model):
 
     def __str__(self):
         return f"Id: {self.id}|Address: {self.address}|Phone Number: {self.phone_number}|Email: {self.email}|Location: {self.location}"
+
+

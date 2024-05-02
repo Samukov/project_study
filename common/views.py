@@ -1,3 +1,4 @@
+from rest_framework import viewsets
 from rest_framework.generics import RetrieveAPIView
 
 from common.serializers import *
@@ -11,14 +12,12 @@ class CommonSettingsView(RetrieveAPIView):
     def get_object(self):
         return CommonSettings.objects.first()
 
-
 class HeaderSettingsView(RetrieveAPIView):
     queryset = HeaderSettings.objects.all()
     serializer_class = HeaderSettingsSerializer
 
     def get_object(self):
         return HeaderSettings.objects.first()
-
 
 class FooterSettingsView(RetrieveAPIView):
     queryset = FooterSettings.objects.all()

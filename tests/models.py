@@ -49,5 +49,3 @@ class TestVariant(models.Model):
 
     def __str__(self):
         return f"Question: {self.test_question.question}| Answer: {self.answer}| Correct: {self.correct}"
-
-
