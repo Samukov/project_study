@@ -7,8 +7,8 @@ class StatistikaCategory(models.Model):
                              max_length=120)
 
     class Meta:
-        verbose_name =_('Static Category')
-        verbose_name_plural =_('Static Categories')
+        verbose_name =_('Statistika Category')
+        verbose_name_plural =_('Statistika Categories')
 
     def __str__(self):
         return self.title
@@ -21,8 +21,8 @@ class Statistika(models.Model):
     minutes_to_solve = models.IntegerField(default=0, verbose_name="Yangilanish vaqti")
     category=models.ForeignKey(to=StatistikaCategory,
                                on_delete=models.CASCADE,
-                               verbose_name='Static Category',
-                               verbose_name_plural='Static Category')
+                               verbose_name='Statistika Category',
+                               verbose_name_plural='Statistika Category')
 
     class Meta:
         verbose_name = _('Statistika')

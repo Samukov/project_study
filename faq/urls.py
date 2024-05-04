@@ -1,9 +1,7 @@
 from django.urls import path
-
-from faq.views import *
-
+from faq.views import FAQCategoryList, FAQCategoryDetail
 
 urlpatterns = [
-    path('faq-categories/', FAQCategoryAPIView.as_view(), name='faq-categories'),
-    path('faq-questions/category/<int:id>/', FAQListByCategory.as_view(), name='faq-by-category'),
+    path('categories/', FAQCategoryList.as_view(), name='faq-categories'),  # URL для списка категорий FAQ
+    path('categories/<int:category_id>/', FAQCategoryDetail.as_view(), name='faq-category-detail'),  # URL для деталей категории FAQ
 ]

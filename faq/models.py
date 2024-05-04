@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+
 class FAQCategory(models.Model):
     title = models.CharField(_('title'),
-                             max_length=120)
+                             max_length=120, null=True)
 
     class Meta:
         verbose_name = _('FAQ Category')
@@ -13,23 +14,17 @@ class FAQCategory(models.Model):
         return self.title
 
 
-
 class FAQ(models.Model):
-    question = models.CharField(_('Question_uz'))
-    answer = models.TextField(_('Answer_uz'),)
-    # question_1 = models.CharField(_('Question_ru'))
-    # answer_1 = models.TextField(_('Answer_ru'))
-    # question_2 = models.CharField(_('Question_en'))
-    # answer_2 = models.TextField(_('Answer_en'))
+    question = models.TextField(_('Question'), null=True)
+    answer = models.TextField(_('Answer'), null=True)
     category = models.ForeignKey(to=FAQCategory,
                                  on_delete=models.CASCADE,
                                  verbose_name=_('Category'),
                                  related_name='questions')
+
     class Meta:
         verbose_name = _('FAQ Question')
         verbose_name_plural = _('FAQ Questions')
 
     def __str__(self):
         return self.question
-
-

@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from common.models import Media
 from django.contrib.auth.models import User
 
+
 class Course(models.Model):
     class LevelChoices(models.TextChoices):
         BEGINNER = 'beginner', _('Beginner')
@@ -20,6 +21,7 @@ class Course(models.Model):
     card_desc = RichTextField(_('card description'))
     course_director = models.CharField(_('course director'),
                                        max_length=120)
+
     level = models.CharField(_('level'),
                              max_length=120,
                              choices=LevelChoices.choices)
@@ -38,6 +40,7 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+
 class Module(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE,
                                verbose_name=_("Course"),
@@ -45,7 +48,6 @@ class Module(models.Model):
     title = models.CharField(_('title'),
                              max_length=120)
     description = RichTextField(_('description'))
-    # lessons_count = models.PositiveIntegerField(_('lessons_count'))
     order = models.PositiveIntegerField(_('module_order'))
     created_at = models.DateTimeField(_('created_at'), auto_now_add=True)
 
@@ -55,8 +57,6 @@ class Module(models.Model):
 
     def __str__(self):
         return f"Course:{self.course.title}| Module:{self.title}"
-
-
 
 
 class Lesson(models.Model):
@@ -76,6 +76,7 @@ class Lesson(models.Model):
     def __str__(self):
         return f"Course: {self.module.course.title}| Module:{self.module.title}| Lesson:{self.title}"
 
+
 class LessonMaterial(models.Model):
     class MaterialType(models.TextChoices):
         VIDEO = 'video', _('Video')
@@ -90,6 +91,7 @@ class LessonMaterial(models.Model):
     file = models.ForeignKey(Media,
                              on_delete=models.CASCADE,
                              verbose_name=_("File"))
+
     class Meta:
         verbose_name = _('Lesson Material')
         verbose_name_plural = _('Lesson Materials')
