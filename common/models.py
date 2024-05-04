@@ -7,23 +7,41 @@ from common.utils import validate_phone_number
 
 class Media(models.Model):
     class FileType(models.TextChoices):
-        IMAGE = 'image', _('Image')
-        VIDEO = 'video', _('Video')
+        IMAGE = "image", _("Image")
+        VIDEO = "video", _("Video")
 
-    file = models.FileField(_("File"),
-                            upload_to='only_medias/',
-                            validators=[FileExtensionValidator(
-                                allowed_extensions=[
-                                    'jpg', 'jpeg', 'png', 'apng',
-                                    'avif', 'gif', 'jfif', 'pjpeg',
-                                    'pjp', 'svg', 'webp',
-                                    'mp4', 'avi', 'mov', 'wmv',
-                                    'mkv', 'flv', 'webm', 'avchd'
-                                ]
-                            )])
-    file_type = models.CharField(_("File type"),
-                                 max_length=10,
-                                 choices=FileType.choices)
+    file = models.FileField(
+        _("File"),
+        upload_to="only_medias/",
+        validators=[
+            FileExtensionValidator(
+                allowed_extensions=[
+                    "jpg",
+                    "jpeg",
+                    "png",
+                    "apng",
+                    "avif",
+                    "gif",
+                    "jfif",
+                    "pjpeg",
+                    "pjp",
+                    "svg",
+                    "webp",
+                    "mp4",
+                    "avi",
+                    "mov",
+                    "wmv",
+                    "mkv",
+                    "flv",
+                    "webm",
+                    "avchd",
+                ]
+            )
+        ],
+    )
+    file_type = models.CharField(
+        _("File type"), max_length=10, choices=FileType.choices
+    )
 
     class Meta:
         verbose_name = _("Media")
@@ -36,14 +54,33 @@ class Media(models.Model):
         if self.file_type not in self.FileType.values:
             raise ValidationError(_("Invalid File Type"))
         elif self.file_type == self.FileType.IMAGE:
-            if self.file.name.split('.')[-1] not in ['jpg', 'jpeg', 'png', 'apng',
-                                                     'avif', 'gif', 'jfif', 'pjpeg',
-                                                     'pjp', 'svg', 'webp']:
+            if self.file.name.split(".")[-1] not in [
+                "jpg",
+                "jpeg",
+                "png",
+                "apng",
+                "avif",
+                "gif",
+                "jfif",
+                "pjpeg",
+                "pjp",
+                "svg",
+                "webp",
+            ]:
                 raise ValidationError(_("Invalid Image File"))
         elif self.file_type == self.FileType.VIDEO:
-            if self.file.name.split('.')[-1] not in ['mp4', 'avi', 'mov', 'wmv',
-                                                     'mkv', 'flv', 'webm', 'avchd']:
+            if self.file.name.split(".")[-1] not in [
+                "mp4",
+                "avi",
+                "mov",
+                "wmv",
+                "mkv",
+                "flv",
+                "webm",
+                "avchd",
+            ]:
                 raise ValidationError(_("Invalid Video File"))
+
 
 class CommonSettings(models.Model):
     instagram = models.URLField(_("instagram"))
@@ -60,7 +97,9 @@ class CommonSettings(models.Model):
 
 
 class HeaderSettings(models.Model):
-    header_photo = models.ForeignKey(Media, models.CASCADE, verbose_name=_("Header photo"))
+    header_photo = models.ForeignKey(
+        Media, models.CASCADE, verbose_name=_("Header photo")
+    )
     about_us_text_title = models.CharField(_("About us title"), max_length=120)
     about_us_text = models.TextField(_("About us text"))
     short_text_left = models.TextField(_("Short text left"))
@@ -69,7 +108,9 @@ class HeaderSettings(models.Model):
 
     left_all_users_title = models.CharField(_("left all users title"), max_length=120)
     left_all_users = models.PositiveIntegerField()
-    center_all_users_title = models.CharField(_("center all users title"), max_length=120)
+    center_all_users_title = models.CharField(
+        _("center all users title"), max_length=120
+    )
     center_all_users = models.PositiveIntegerField()
     right_all_users_title = models.CharField(_("right all users title"), max_length=120)
     right_all_users = models.PositiveIntegerField()
@@ -84,8 +125,9 @@ class HeaderSettings(models.Model):
 
 class FooterSettings(models.Model):
     address = models.CharField(_("address"), max_length=120)
-    phone_number = models.CharField(_("phone number"), max_length=20,
-                                    validators=[validate_phone_number])
+    phone_number = models.CharField(
+        _("phone number"), max_length=20, validators=[validate_phone_number]
+    )
     email = models.EmailField(_("Email"))
     location = models.URLField(_("location"))
 
@@ -95,5 +137,3 @@ class FooterSettings(models.Model):
 
     def __str__(self):
         return f"Id: {self.id}|Address: {self.address}|Phone Number: {self.phone_number}|Email: {self.email}|Location: {self.location}"
-
-

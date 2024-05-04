@@ -5,6 +5,7 @@ from rest_framework.serializers import ModelSerializer
 
 from common.models import *
 
+
 class MediaURLSerializer(serializers.Serializer):
     def to_representation(self, media):
         if not media:
@@ -14,11 +15,14 @@ class MediaURLSerializer(serializers.Serializer):
             return self.context["request"].build_absolute_uri(media.file.url)
         except Exception:
             return "http://testserver" + str(media.file.url)
+
+
 class CommonSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CommonSettings
-        fields = '__all__'
+        fields = "__all__"
         read_only_fields = [fields]
+
 
 class HeaderSettingsSerializer(serializers.Serializer):
 
@@ -34,8 +38,9 @@ class HeaderSettingsSerializer(serializers.Serializer):
     right_all_users_title = serializers.CharField()
     right_all_users = serializers.IntegerField()
 
+
 class FooterSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = FooterSettings
-        fields = '__all__'
+        fields = "__all__"
         read_only_fields = [fields]
