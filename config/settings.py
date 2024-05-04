@@ -41,7 +41,7 @@ LOCAL_APPS = [
     "certificate",
 ]
 
-THIRD_PART = ["rest_framework", "ckeditor"]
+THIRD_PART = ["rest_framework", "ckeditor", "drf_yasg"]
 
 INSTALLED_APPS = GLOBAL_APPS + LOCAL_APPS + THIRD_PART
 
@@ -142,3 +142,28 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
+# Swagger settings
+SWAGGER_SETTINGS = {
+    "DEFAULT_INFO": "config.urls.api_info",  # Reference to your API info dictionary
+    "SECURITY_DEFINITIONS": {
+        "Basic": {"type": "basic"},
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",  # Token <value>
+            "in": "header",
+        },
+    },
+}
+
+# Rest Framework Settings
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    #"USER_DETAILS_SERIALIZER": "user.serializer.UserSerializer", when finished modify this property
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",), # update based on your business logic
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+}
