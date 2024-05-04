@@ -9,8 +9,7 @@ class FAQCategoryAPIView(ListAPIView):
     serializer_class = FAQCategorySerializer
 
 
-
 class FAQListByCategory(RetrieveAPIView):
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
-    lookup_field = 'id'
+    lookup_field = "id"

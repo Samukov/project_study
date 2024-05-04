@@ -2,9 +2,9 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from common.models import Media
 
+
 class MultimediaGalleryFile(models.Model):
-    file = models.ForeignKey(Media, on_delete=models.CASCADE,
-                             verbose_name=_("File"))
+    file = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name=_("File"))
 
     # TODO: Add field
     # is_home_page = models.BooleanField(_("is home page"),
