@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from statistika.models import *
+
+
+admin.site.register(StatistikaCategory)
+admin.site.register(Statistika)

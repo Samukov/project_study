@@ -1,6 +1,6 @@
 from dotenv import dotenv_values
 from pathlib import Path
-# from config.jazzmin_settings import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
+from config.jaazmin_settings import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 
 config = dotenv_values(".env")
 
@@ -136,10 +136,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
-#
-#
-# JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
+JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
+
+
+JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}

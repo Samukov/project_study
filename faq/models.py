@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class FAQCategory(models.Model):
     title = models.CharField(_('title'),
-                             max_length=120, null=True)
+                             max_length=120)
 
     class Meta:
         verbose_name = _('FAQ Category')
@@ -15,8 +15,8 @@ class FAQCategory(models.Model):
 
 
 class FAQ(models.Model):
-    question = models.TextField(_('Question'), null=True)
-    answer = models.TextField(_('Answer'), null=True)
+    question = models.TextField(_('Question'))
+    answer = models.TextField(_('Answer'))
     category = models.ForeignKey(to=FAQCategory,
                                  on_delete=models.CASCADE,
                                  verbose_name=_('Category'),

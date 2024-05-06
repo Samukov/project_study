@@ -1,12 +1,14 @@
 from rest_framework import serializers
 from faq.models import FAQCategory, FAQ
 
+
 class FAQSerializer(serializers.ModelSerializer):
     """Сериализатор для модели FAQ."""
 
     class Meta:
         model = FAQ
         fields = ['question', 'answer']
+
 
 class FAQCategorySerializer(serializers.ModelSerializer):
     """Сериализатор для модели FAQCategory."""
@@ -16,6 +18,5 @@ class FAQCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = FAQCategory
         fields = ['id', 'title', 'questions']
-
 
 

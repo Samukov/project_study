@@ -1,5 +1,6 @@
 from django.contrib import admin
 
-from faq.models import *
+from certificate.models import *
 
 
+admin.site.register(Certificate)

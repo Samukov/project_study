@@ -8,10 +8,6 @@ class MultimediaGalleryFile(models.Model):
     file = models.ForeignKey(Media, on_delete=models.CASCADE,
                              verbose_name=_("File"))
 
-    # TODO: Add field
-    # is_home_page = models.BooleanField(_("is home page"),
-    #                                    default=False)
-
     class Meta:
         verbose_name = _("Multimedia Gallery File")
         verbose_name_plural = _("Multimedia Gallery Files")

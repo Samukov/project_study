@@ -1,12 +1,14 @@
 from rest_framework import serializers
 from tests.models import FinalTest, TestQuestion, TestVariant, FinalExamResult
 
+
 class TestVariantSerializer(serializers.ModelSerializer):
     """Сериализатор для модели TestVariant."""
 
     class Meta:
         model = TestVariant
         fields = ['answer', 'correct']
+
 
 class TestQuestionSerializer(serializers.ModelSerializer):
     """Сериализатор для модели TestQuestion, включая связанные варианты ответов."""
@@ -16,6 +18,7 @@ class TestQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestQuestion
         fields = ['question', 'test_variants']
+
 
 class FinalTestSerializer(serializers.ModelSerializer):
     """Сериализатор для модели FinalTest, включая связанные вопросы теста."""
