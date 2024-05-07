@@ -6,7 +6,7 @@ from common.models import Media
 
 class MultimediaGalleryFile(models.Model):
     file = models.ForeignKey(Media, on_delete=models.CASCADE,
-                             verbose_name=_("File"))
+                             verbose_name=_("File"), )
 
     class Meta:
         verbose_name = _("Multimedia Gallery File")

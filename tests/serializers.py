@@ -3,7 +3,6 @@ from tests.models import FinalTest, TestQuestion, TestVariant, FinalExamResult
 
 
 class TestVariantSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели TestVariant."""
 
     class Meta:
         model = TestVariant
@@ -11,9 +10,8 @@ class TestVariantSerializer(serializers.ModelSerializer):
 
 
 class TestQuestionSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели TestQuestion, включая связанные варианты ответов."""
 
-    test_variants = TestVariantSerializer(many=True, read_only=True)  # Сериализатор для связанных вариантов ответов
+    test_variants = TestVariantSerializer(many=True, read_only=True)
 
     class Meta:
         model = TestQuestion
@@ -21,7 +19,6 @@ class TestQuestionSerializer(serializers.ModelSerializer):
 
 
 class FinalTestSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели FinalTest, включая связанные вопросы теста."""
 
     test_questions = TestQuestionSerializer(many=True, read_only=True)  # Сериализатор для связанных вопросов теста
 

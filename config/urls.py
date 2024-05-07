@@ -12,10 +12,10 @@ urlpatterns = [
     path('faq/api/', include('faq.urls')),
     path('multimedia/api/', include('multimedia.urls')),
     path('course/api/', include('course.urls')),
-    path('certificate/api/', include('multimedia.urls')),
-    path('tests/api/', include('multimedia.urls')),
-    path('user/api/', include('multimedia.urls')),
-    path('statistika/api/', include('multimedia.urls')),
+    path('certificate/api/', include('certificate.urls')),
+    path('tests/api/', include('tests.urls')),
+    path('user/api/', include('user.urls')),
+    path('statistika/api/', include('statistika.urls')),
 ]
 
 

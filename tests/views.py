@@ -6,7 +6,6 @@ from .serializers import TestQuestionSerializer
 
 
 class FinalTestQuestions(APIView):
-    """Представление для получения всех вопросов и вариантов ответов для финального теста."""
 
     def get(self, request, final_test_id):
         try:
@@ -21,7 +20,6 @@ class FinalTestQuestions(APIView):
 
 
 class SubmitTestAnswers(APIView):
-    """Представление для отправки ответов на финальный тест и записи их в БД."""
 
     def post(self, request):
         data = request.data
@@ -30,7 +28,6 @@ class SubmitTestAnswers(APIView):
 
 
 class TestResult(APIView):
-    """Представление для отображения результатов теста."""
 
     def get(self, request, final_test_id):
         try:

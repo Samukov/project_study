@@ -33,7 +33,6 @@ class CustomUser(AbstractUser):
     region = models.ForeignKey(to=Regions,
                                on_delete=models.CASCADE,
                                verbose_name=_("Region"))
-    # Задаем related_name для полей groups и user_permissions
     groups = models.ManyToManyField(Group, verbose_name=_('groups'), blank=True, related_name='custom_user_groups')
     user_permissions = models.ManyToManyField(Permission, verbose_name=_('user permissions'), blank=True,
                                               related_name='custom_user_permissions')

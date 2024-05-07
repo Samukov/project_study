@@ -7,7 +7,6 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """Сериализатор для просмотра и обновления данных профиля пользователя."""
 
     class Meta:
         model = User
@@ -17,7 +16,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-    """Сериализатор для регистрации нового пользователя."""
 
     password1 = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'},
                                       label=_("Password"))  # Пароль
@@ -30,14 +28,12 @@ class UserRegisterSerializer(serializers.ModelSerializer):
                   'phone_number', 'region']
 
     def validate(self, attrs):
-        """Проверка паролей на совпадение."""
 
         if attrs['password1'] != attrs['password2']:
             raise serializers.ValidationError(_("The two passwords do not match."))  # Проверка на совпадение паролей
         return attrs
 
     def create(self, validated_data):
-        """Создание нового пользователя."""
 
         user = User.objects.create_user(
             username=validated_data['username'],
@@ -55,13 +51,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 
 class UserLoginSerializer(serializers.Serializer):
-    """Сериализатор для входа пользователя."""
 
     username = serializers.CharField()
     password = serializers.CharField(style={'input_type': 'password'})
 
     def validate(self, attrs):
-        """Проверка подлинности пользователя."""
 
         user = User.objects.filter(username=attrs.get("username")).first()
         if user and user.check_password(attrs.get("password")):
@@ -70,12 +64,10 @@ class UserLoginSerializer(serializers.Serializer):
 
 
 class UserLogoutSerializer(serializers.Serializer):
-    """Сериализатор для выхода пользователя."""
 
     refresh = serializers.CharField()
 
     def validate(self, attrs):
-        """Проверка токена обновления."""
 
         try:
             RefreshToken(attrs['refresh']).blacklist()
@@ -85,7 +77,6 @@ class UserLogoutSerializer(serializers.Serializer):
 
 
 class UserProfileUpdateSerializer(serializers.ModelSerializer):
-    """Сериализатор для обновления данных профиля пользователя."""
 
     class Meta:
         model = User

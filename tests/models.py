@@ -39,6 +39,8 @@ class TestQuestion(models.Model):
         return f"Course: {self.final_test.course.title}| Order: {self.order}| Question: {self.question}"
 
 
+
+
 class TestVariant(models.Model):
     answer = models.CharField(_('answer'),
                               max_length=120)

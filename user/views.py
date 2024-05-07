@@ -7,17 +7,15 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class UserRegisterView(generics.CreateAPIView):
-    """Представление для регистрации нового пользователя."""
 
     serializer_class = UserRegisterSerializer
-    permission_classes = [permissions.AllowAny] # Разрешить доступ без аутентификации
+    permission_classes = [permissions.AllowAny]
 
 
 class UserLoginView(generics.GenericAPIView):
-    """Представление для входа пользователя."""
 
     serializer_class = UserLoginSerializer
-    permission_classes = [permissions.AllowAny] # Разрешить доступ без аутентификации
+    permission_classes = [permissions.AllowAny]
 
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -31,10 +29,9 @@ class UserLoginView(generics.GenericAPIView):
 
 
 class UserLogoutView(generics.GenericAPIView):
-    """Представление для выхода пользователя."""
 
     serializer_class = UserLogoutSerializer
-    permission_classes = [permissions.IsAuthenticated] # Только для аутентифицированных пользователей
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -43,20 +40,18 @@ class UserLogoutView(generics.GenericAPIView):
 
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
-    """Представление для просмотра и обновления данных профиля пользователя."""
 
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated] # Только для аутентифицированных пользователей
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
         return self.request.user
 
 
 class UserProfileUpdateView(generics.UpdateAPIView):
-    """Представление для обновления данных профиля пользователя."""
 
     serializer_class = UserProfileUpdateSerializer
-    permission_classes = [permissions.IsAuthenticated]  # Только для аутентифицированных пользователей
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
         return self.request.user

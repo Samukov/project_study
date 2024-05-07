@@ -3,7 +3,6 @@ from faq.models import FAQCategory, FAQ
 
 
 class FAQSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели FAQ."""
 
     class Meta:
         model = FAQ
@@ -11,10 +10,9 @@ class FAQSerializer(serializers.ModelSerializer):
 
 
 class FAQCategorySerializer(serializers.ModelSerializer):
-    """Сериализатор для модели FAQCategory."""
 
-    questions = FAQSerializer(many=True, read_only=True)  # Сериализатор для связанных вопросов FAQ
 
+    questions = FAQSerializer(many=True, read_only=True)
     class Meta:
         model = FAQCategory
         fields = ['id', 'title', 'questions']
